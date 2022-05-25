@@ -1,17 +1,22 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { loadDevTools } from "jira-dev-tool";
+import { loadServer, DevTools } from "jira-dev-tool";
+// 务必在jira-dev-tool之后引用
+import "antd/dist/antd.less";
 import { AppProviders } from "./context";
+import { QueryClient, QueryClientProvider } from "react-query";
 
-loadDevTools(() =>
+loadServer(() =>
   ReactDOM.render(
     <React.StrictMode>
-      <AppProviders>
-        <App />
-      </AppProviders>
+      <QueryClientProvider client={new QueryClient()}>
+        <AppProviders>
+          <DevTools />
+          <App />
+        </AppProviders>
+      </QueryClientProvider>
     </React.StrictMode>,
     document.getElementById("root")
   )
