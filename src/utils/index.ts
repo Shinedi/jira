@@ -4,7 +4,7 @@ export const isFalsy = (value: unknown) => (value === 0 ? false : !value);
 export const isVoid = (value: unknown) =>
   value === null || value === undefined || value === "";
 
-// 在一个函数里，改变传入的对象是不好的
+// 在一个函数里，改变传入的对象是不好的 测试tag
 export const cleanObject = (object: { [key: string]: unknown }) => {
   const result = { ...object };
   Object.keys(result).forEach((key) => {
